@@ -3,12 +3,13 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { Button } from "@/components/ui/button"
 import { Form } from "@/components/ui/form"
 import { CustomFormField } from "../CustomFormField";
 import SubmitButton from "../SubmitButton";
 import { useState } from "react";
 import { UserValidation } from "@/lib/validation";
+import { createUser } from "@/lib/actions/patient.actions";
+import { useRouter } from "next/navigation";
 
 export enum FormFieldType{
     INPUT = 'input',
@@ -21,6 +22,8 @@ export enum FormFieldType{
 }
 
 const PatientForm = () => {
+
+  const router = useRouter();
 
   const [isLoading,setIsLoading] = useState(false)
 
@@ -37,13 +40,19 @@ const PatientForm = () => {
     setIsLoading(true);
 
     try {
-      // const userData = {name, email, phone };
+      const userData = {name, email, phone };
 
-      // const user = await createUser(userData);
+      const newUser = await createUser(userData);
+      console.log(newUser);
+
+      if(newUser){
+        router.push(`/patients/${newUser.$id}/register`)
+      }
     } catch (error) {
-      console.log(error);
+      console.log("Error while calling creatingUser: ",error);
       
     }
+    setIsLoading(false);
   }
 
   return(
