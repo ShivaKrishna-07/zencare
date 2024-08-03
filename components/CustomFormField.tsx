@@ -1,6 +1,5 @@
 import {
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -16,7 +15,6 @@ import DatePicker from "react-datepicker";
 
 import PhoneInput from "react-phone-number-input";
 import { Select, SelectTrigger, SelectContent, SelectValue } from "./ui/select";
-import { FormInput } from "lucide-react";
 import { Textarea } from "./ui/textarea";
 import { Checkbox } from "./ui/checkbox";
 
@@ -38,8 +36,6 @@ interface CustomProps {
 const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
   const {
     fieldType,
-    iconAlt,
-    iconSrc,
     placeholder,
     showTimeSelect,
     dateFormat,

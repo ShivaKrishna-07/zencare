@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { Form, FormControl } from "@/components/ui/form";
-import { createUser, registerPatient } from "@/lib/actions/patient.actions";
+import {  registerPatient } from "@/lib/actions/patient.actions";
 
 import "react-phone-number-input/style.css";
 import { CustomFormField } from "../CustomFormField";
