@@ -1,5 +1,8 @@
-"use client"
+"use client";
 
+import { useState } from "react";
+
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -8,47 +11,53 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { useState } from "react";
-import { Button } from "./ui/button";
 import { Appointment } from "@/types/appwrite.types";
+
 import AppointmentForm from "./forms/AppointmentForm";
 
-const AppointmentModal = ({
-    type,
-    patientId,
-    userId,
-    appointmentId
-}: {type: 'schedule' | 'cancel'
-    patientId: string,
-    userId: string,
-    appointmentId: Appointment
-}) => {
+import "react-datepicker/dist/react-datepicker.css";
 
-    const [open, setOpen] = useState(false);
+export const AppointmentModal = ({
+  patientId,
+  userId,
+  appointment,
+  type,
+}: {
+  patientId: string;
+  userId: string;
+  appointment?: Appointment;
+  type: "schedule" | "cancel";
+  title: string;
+  description: string;
+}) => {
+  const [open, setOpen] = useState(false);
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger>
-        <Button variant="ghost" className={`capitalize ${type === 'schedule' && 'text-green-500'}`}>
-            {type}
+      <DialogTrigger asChild>
+        <Button
+          variant="ghost"
+          className={`capitalize ${type === "schedule" && "text-green-500"}`}
+        >
+          {type}
         </Button>
       </DialogTrigger>
       <DialogContent className="shad-dialog sm:max-w-md">
         <DialogHeader className="mb-4 space-y-3">
           <DialogTitle className="capitalize">{type} Appointment</DialogTitle>
           <DialogDescription>
-            Please fill the following details to {type} Appointment
+            Please fill in the following details to {type} appointment
           </DialogDescription>
         </DialogHeader>
+
         <AppointmentForm
-            type={type}
-            userId={userId}
-            patientId={patientId}
-            appointment={appointmentId}
+          userId={userId}
+          patientId={patientId}
+          type={type}
+          appointment={appointment}
+          setOpen={setOpen}
         />
       </DialogContent>
     </Dialog>
   );
 };
-
-export default AppointmentModal;

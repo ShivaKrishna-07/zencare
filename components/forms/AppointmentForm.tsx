@@ -46,8 +46,10 @@ const AppointmentForm = ({
     },
   });
 
-  async function onSubmit(values: z.infer<typeof AppointmentFormValidation>) {
+  console.log("...............",appointment);
+  
 
+  async function onSubmit(values: z.infer<typeof AppointmentFormValidation>) {
     setIsLoading(true);
 
     let status;
@@ -127,6 +129,8 @@ const AppointmentForm = ({
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 flex-1">
+        
+        
         { type == 'create' && <section className="mb-12 space-y-4">
           <h1 className="header">New Appointment👋</h1>
           <p className="text-dark-700">
