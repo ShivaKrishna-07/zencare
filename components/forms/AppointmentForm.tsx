@@ -55,11 +55,11 @@ const AppointmentForm = ({
     let status;
     switch (type) {
         case 'schedule':
-            status = 'schedule'
+            status = 'scheduled'
             break;
     
         case 'cancel':
-            status = 'cancel';
+            status = 'cancelled';
             break;
         default:
             status = 'pending';
